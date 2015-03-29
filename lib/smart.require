@@ -1,0 +1,22 @@
+{
+	"famous": {
+		"git": "https://github.com/Famous/famous.git",
+		"root": "src"
+	},
+	"famous.polyfills": {
+		"git": "https://github.com/Famous/polyfills.git"
+	},
+	"library": {
+		"git": "https://github.com/raix/library.git"
+	},
+	"famous-polyfills": {
+		"alias": "famous.polyfills"
+	},
+	"flex": {
+		"git": "https://github.com/IjzerenHein/famous-flex.git",
+		"root": "src"
+	},
+	"famodev": {
+		"path": "/Users/rubyist/meteor/packages/famodev/src"
+	}
+}
