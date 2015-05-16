@@ -9,9 +9,6 @@ var StateModifier      = famous.modifiers.StateModifier;
 var EventHandler       = famous.core.EventHandler;
 var RenderController   = famous.views.RenderController;
 
-var LayoutController   = flex.LayoutController;
-var HeaderFooterLayout = flex.layouts.HeaderFooterLayout;
-var NavBarLayout       = flex.layouts.NavBarLayout;
 /*
  * @name AppView
  * @constructor
@@ -30,21 +27,7 @@ AppView = function() {
     this._currentPage = undefined;
     this.content = new RenderController();
 
-    this.layout = new LayoutController({
-        layout: HeaderFooterLayout,
-        layoutOptions: {
-            headerSize: 60,
-            footerSize: 20
-        },
-        flow: true,
-        dataSource: {
-            header: new HeaderView(),
-            content: this.content,
-            footer: new Surface({content: '© Sayawan'})
-        }
-    });
-
-    this.add(this.layout);
+    this.add(this.content);
 
     createPages.call(this);
     showPage.call(this);

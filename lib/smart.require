@@ -12,11 +12,8 @@
 	"famous-polyfills": {
 		"alias": "famous.polyfills"
 	},
-	"flex": {
-		"git": "https://github.com/IjzerenHein/famous-flex.git",
-		"root": "src"
-	},
 	"famodev": {
-		"path": "/Users/rubyist/meteor/packages/famodev/src"
+	    "git": "https://github.com/sayawan/famodev.git",
+	    "root": "src"
 	}
 }
