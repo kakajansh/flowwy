@@ -8,6 +8,7 @@ var Transform          = famous.core.Transform;
 var StateModifier      = famous.modifiers.StateModifier;
 var EventHandler       = famous.core.EventHandler;
 var RenderController   = famous.views.RenderController;
+var HeaderFooterLayout = famous.views.HeaderFooterLayout;
 
 /*
  * @name AppView
@@ -25,9 +26,18 @@ AppView = function() {
 
     this._pages = [];
     this._currentPage = undefined;
-    this.content = new RenderController();
 
-    this.add(this.content);
+    this.layout = new HeaderFooterLayout({
+        headerSize: 100,
+        footerSize: 50
+    });
+
+    this.layout.header.add(new HeaderView());
+
+    this.content = new RenderController();
+    this.layout.content.add(this.content);
+
+    this.add(this.layout);
 
     createPages.call(this);
     showPage.call(this);
