@@ -5,6 +5,9 @@ var EventHandler  = famous.core.EventHandler;
 var StateModifier = famous.modifiers.StateModifier;
 var InputSurface  = famous.surfaces.InputSurface;
 
+flex.widgets.styles;
+var TabBar = flex.widgets.TabBar;
+
 /*
  * @name HeaderView
  * @constructor
@@ -14,17 +17,18 @@ var InputSurface  = famous.surfaces.InputSurface;
 HeaderView = function() {
     View.apply(this, arguments);
 
-    var header = new Surface({
-        size: [undefined, 60],
-        content: "Header",
-        properties: {
-            lineHeight: "60px",
-            textAlign: "center",
-            backgroundColor: 'red'
+    var tabBar = new TabBar({
+        createRenderables: {
+            background: true,
+            selectedItemOverlay: true
         }
-    })
-
-    this.add(header);
+    });
+    tabBar.setItems([
+        'one',
+        'two',
+        'three'
+    ]);
+    this.add(tabBar); // add to the render-tree
 }
 
 HeaderView.prototype = Object.create(View.prototype);

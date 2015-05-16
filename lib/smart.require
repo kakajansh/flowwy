@@ -12,6 +12,11 @@
 	"famous-polyfills": {
 		"alias": "famous.polyfills"
 	},
+	"flex": {
+		"git": "https://github.com/dcsan/famous-flex.git",
+		"root": "src",
+		"branch": "v031-branch"
+	},
 	"famodev": {
 	    "git": "https://github.com/sayawan/famodev.git",
 	    "root": "src"
