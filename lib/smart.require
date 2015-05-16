@@ -17,6 +17,6 @@
 		"root": "src"
 	},
 	"famodev": {
-		"path": "/Users/rubyist/meteor/packages/famodev/src"
+    "git": "git@github.com:particle4dev/famodev.git"
 	}
 }
