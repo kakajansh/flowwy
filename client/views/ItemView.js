@@ -64,3 +64,22 @@ Template.item.helpers({
 
 //     this.add(surf);
 // }
+
+// Famodev
+// function _createItem() {
+//     var surf = new famodev.ReactiveSurface({
+//         size: [undefined, undefined],
+//         content: function() { 
+//             var item = Items.findOne(FlowRouter.getParam('id'));
+//             if (item) return item.text;
+//         },
+//         classes: [],
+//         properties: {
+//             color: 'black',
+//             textAlign: 'center',
+//             backgroundColor: 'white'
+//         }
+//     });
+
+//     this.add(surf);
+// }
