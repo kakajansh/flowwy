@@ -173,8 +173,12 @@ function _insertSurface() {
     return surf;
 }
 
+// 
+// IT IS BETTER TO CREATE NEW VIEW (ItemView.js)
+// I JUST GO WITH RENDERNODE
+// 
 function _createSurf(id, data) {
-    // var node = new famous.core.RenderNode();
+    var node = new famous.core.RenderNode();
 
     var surf = new ReactiveTemplate({
         size: [undefined, undefined],
@@ -188,30 +192,48 @@ function _createSurf(id, data) {
         }
     });
 
-    var self = this;
     surf.on('click', function(event) {
+        FlowRouter.go('/item/'+id);
+    });
+
+    var remove = new Surface({
+        size: [true, 30],
+        content: 'REMOVE',
+        classes: [],
+        properties: {
+            color: 'white',
+            textAlign: 'center',
+            cursor: 'default',
+            backgroundColor: '#FA5C4F',
+            zIndex: 1
+        }
+    });
+
+    remove.state = new StateModifier({
+        align: [0.5, 1],
+        origin: [0.5, 1],
+        transform: Transform.translate(0, 0, 1)
+    });
+
+    var self = this;
+    remove.on('click', function(event) {
         Items.remove(id, function(error, result) {
             self.scrollView.remove(surf);
         });
     });
 
-    // surf.state = new StateModifier({
-        // align: [0, 0],
-        // origin: [0, 0],
-        // transform: Transform.translate(40, 0, 0)
-    // });
-
     // surf.pipe(this.scrollView);
     // console.log(surf);
     // console.log(this.surfaces.length);
-    // node.add(surf.state).add(surf);
+    node.add(surf.state).add(surf);
+    node.add(remove.state).add(remove);
 
     // famous.utilities.Timer.setTimeout(function() {}, 100);
     
     // RANDOM INSERT
-    var num = Math.floor(Math.random() * FlowRouter._current.route.handle.loaded()) + 1
-    this.scrollView.insert(num, surf);
+    var num = (Math.floor(Math.random() * FlowRouter._current.route.handle.loaded()) + 1) || -1;
+    this.scrollView.insert(num, node);
 
     // NORMAL 
-    // this.scrollView.push(surf);
+    // this.scrollView.push(node);
 }

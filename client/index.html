@@ -11,3 +11,15 @@
     <h3>Hello</h3>
     <p>I am a surface {{ text }}</p>
 </template>
+
+<template name="item">
+{{#with item}}
+    <h2>Item</h2>
+    <p>{{ text }}</p>
+    <ul>
+        {{#each subitems}}
+            <li>{{ this }}</li>
+        {{/each}}
+    </ul>
+{{/with}}
+</template>

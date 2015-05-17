@@ -66,6 +66,7 @@ function createPages() {
 
     this.createPage('about', new AboutView({}));
     this.createPage('load', new LoadView({}));
+    this.createPage('item', new ItemView({}));
 
 }
 

@@ -21,6 +21,16 @@ FlowRouter.route('/about', {
     }
 });
 
+FlowRouter.route('/item/:id', {
+    subscriptions: function(params) {
+        this.handle = Meteor.subscribe('item', params.id);
+        this.register('ItemSub', this.handle);
+    },
+    action: function(params, queryParams) {
+
+    }
+});
+
 FlowRouter.route('/load', {});
 
 FlowRouter.route('/', {
