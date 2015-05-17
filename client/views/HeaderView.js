@@ -23,11 +23,16 @@ HeaderView = function() {
             selectedItemOverlay: true
         }
     });
-    tabBar.setItems([
-        'one',
-        'two',
-        'three'
-    ]);
+
+    var tabBarItems = [
+        'Home', 'About'
+    ];
+    tabBar.setItems(tabBarItems);
+    tabBar.on('tabchange', function(event) {
+        var item = tabBarItems[event.index];
+        var url = item.charAt(0).toLowerCase() + item.slice(1);
+        FlowRouter.go('/'+url);
+    });
     this.add(tabBar); // add to the render-tree
 }
 

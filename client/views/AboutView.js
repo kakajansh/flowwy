@@ -1,6 +1,6 @@
 var View          = famous.core.View;
 var Surface       = famous.core.Surface;
-var EventHandler  = famous.core.EventHandler;
+var Transform     = famous.core.Transform;
 var StateModifier = famous.modifiers.StateModifier;
 
 var FlexScrollView = flex.FlexScrollView;
@@ -71,6 +71,8 @@ function _createScrollView() {
     });
 
     for(var i = 0, surf; i <= 20; i++) {
+        var node = new famous.core.RenderNode();
+
         surf = new ReactiveTemplate({
             size: [undefined, undefined],
             template: Template.surface,
@@ -83,8 +85,18 @@ function _createScrollView() {
             }
         });
 
+        surf.state = new StateModifier({
+            // align: [0, 0],
+            // origin: [0, 0],
+            transform: Transform.translate(40, 0, 0)
+        });
+
         surf.pipe(scrollView);
-        surfaces.push(surf);
+        
+        node.add(surf.state).add(surf);
+
+        // famous.utilities.Timer.setTimeout(function() {}, 100);
+        surfaces.push(node);
     }
 
     scrollView.state = new StateModifier({
