@@ -4,35 +4,35 @@ var EventHandler  = famous.core.EventHandler;
 var StateModifier = famous.modifiers.StateModifier;
 
 /*
- * @name HomeView
+ * @name LoadView
  * @constructor
  * @description
  */
 
-HomeView = function() {
+LoadView = function() {
     View.apply(this, arguments);
 
     this._eventInput.on('ready', function() {
-        console.info("HomeView.js is ready");
+        console.info("LoadView.js is ready");
     });
 
     this._eventInput.on('leave', function() {
-        console.info("leaving HomeView.js");
+        console.info("leaving LoadView.js");
     });
 
     _createSurface.call(this);
 }
 
-HomeView.prototype = Object.create(View.prototype);
-HomeView.prototype.constructor = HomeView;
+LoadView.prototype = Object.create(View.prototype);
+LoadView.prototype.constructor = LoadView;
 
-HomeView.DEFAULT_OPTIONS = {
+LoadView.DEFAULT_OPTIONS = {
 };
 
 function _createSurface() {
     var surface = new Surface({
         size: [500, 500],
-        content: "Hello world",
+        content: "LOADING",
         properties: {
             'color': 'white',
             'text-align': 'center',

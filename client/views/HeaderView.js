@@ -24,6 +24,10 @@ HeaderView = function() {
         }
     });
 
+    tabBar.state = new StateModifier({
+        transform: Transform.inFront
+    });
+
     var tabBarItems = [
         'Home', 'About'
     ];
@@ -33,7 +37,7 @@ HeaderView = function() {
         var url = item.charAt(0).toLowerCase() + item.slice(1);
         FlowRouter.go('/'+url);
     });
-    this.add(tabBar); // add to the render-tree
+    this.add(tabBar.state).add(tabBar);
 }
 
 HeaderView.prototype = Object.create(View.prototype);

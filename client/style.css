@@ -1,3 +1,13 @@
 body {
     background-color: #66CCFF;
 }
+
+.ff-tabbar.background {
+  background-color: #ECECEC;
+}
+.ff-tabbar.item {
+  color: #333333;
+}
+.ff-tabbar.selectedItemOverlay {
+  border-bottom: 4px solid #1185c3;
+}

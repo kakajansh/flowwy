@@ -29,10 +29,10 @@ AppView = function() {
 
     this.layout = new HeaderFooterLayout({
         headerSize: 100,
-        footerSize: 50
+        // footerSize: 50
     });
 
-    this.layout.header.add(new HeaderView());
+    this.layout.header.add(famous.utilities.Utility.transformInFront).add(new HeaderView());
 
     this.content = new RenderController();
     this.layout.content.add(this.content);
@@ -65,6 +65,7 @@ function createPages() {
     }));
 
     this.createPage('about', new AboutView({}));
+    this.createPage('load', new LoadView({}));
 
 }
 
@@ -72,15 +73,28 @@ function showPage() {
     this.eventInput.on('route changed', function(name) {
 
         var view = this._pages[name];
+        var prev = this.getPage();
+        if (prev) prev.trigger('leave');
 
         if (view) {
             this.content.show(view);
+            this._currentPage = view;
+            this._eventInput.subscribe(view);
 
             if (!view.options.run) {
+                if (view.handle) view.handle.stop();
                 view.trigger('ready');
-                view.options.run = true;
+                // view.options.run = true;
             }
         }
 
+    }.bind(this));
+
+    this._eventInput.on('load start', function() {
+        this.content.show(this._pages['load']);
+    }.bind(this));
+
+    this._eventInput.on('load end', function() {
+        this.content.show(this._currentPage);
     }.bind(this));
 }

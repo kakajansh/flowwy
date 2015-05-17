@@ -3,15 +3,25 @@
  */
 
 FlowRouter.route('/home', {
+    // subscriptions: function(params, queryParams) {
+        
+    // },
+    // action: function() {
+
+    // }
+});
+
+FlowRouter.route('/about', {
     subscriptions: function(params, queryParams) {
-
+        this.handle = Meteor.subscribeWithPagination('items', 5)
+        this.register('ItemsSub', this.handle);
     },
-    action: function() {
-
+    action: function(params, queryParams) {
+        // if (queryParams.limit > 5) handle.loadNextPage();
     }
 });
 
-FlowRouter.route('/about', {});
+FlowRouter.route('/load', {});
 
 FlowRouter.route('/', {
     action: function() {
