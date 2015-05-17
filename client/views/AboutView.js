@@ -47,42 +47,41 @@ function _createBack() {
 }
 
 function _createScrollView() {
+    surfaces = []
     var scrollView = new FlexScrollView({
       layout: CollectionLayout,
-        useContainer: true,
-        container: { // options passed to the ContainerSurface
-            properties: {
-                overflow: 'hidden'
-            }
-        },
+        // useContainer: true,
+        // container: { // options passed to the ContainerSurface
+        //     properties: {
+        //         overflow: 'hidden'
+        //     }
+        // },
+        mouseMove: true,
         direction: 0,
+        // autoPipeEvents: true,
       layoutOptions: {
         itemSize: [300, 300],    // item has width and height of 100 pixels
         margins: [10, 5, 10, 5], // outer margins
         spacing: [10, 10]        // spacing between items
       },
-      dataSource: [
-        new Surface({content: 'item 1', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 2', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-        new Surface({content: 'item 3', properties: {backgroundColor:'white'}}),
-      ]
+      dataSource: surfaces
     });
+
+    for(var i = 0, surf; i <= 20; i++) {
+        surf = new Surface({
+            size: [undefined, undefined],
+            content: '',
+            classes: [],
+            properties: {
+                color: 'white',
+                textAlign: 'center',
+                backgroundColor: 'white'
+            }
+        });
+
+        surf.pipe(scrollView);
+        surfaces.push(surf);
+    }
 
     scrollView.state = new StateModifier({
         origin: [0.5, 0.5],
