@@ -6,6 +6,9 @@ var StateModifier = famous.modifiers.StateModifier;
 var FlexScrollView = flex.FlexScrollView;
 var CollectionLayout = flex.layouts.CollectionLayout;
 
+famodev.helpers;
+var ReactiveTemplate = famodev.ReactiveTemplate;
+
 /*
  * @name AboutView
  * @constructor
@@ -68,12 +71,13 @@ function _createScrollView() {
     });
 
     for(var i = 0, surf; i <= 20; i++) {
-        surf = new Surface({
+        surf = new ReactiveTemplate({
             size: [undefined, undefined],
-            content: '',
+            template: Template.surface,
+            data: {num: i+1},
             classes: [],
             properties: {
-                color: 'white',
+                color: 'black',
                 textAlign: 'center',
                 backgroundColor: 'white'
             }
