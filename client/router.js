@@ -17,7 +17,7 @@ FlowRouter.route('/about', {
         this.register('ItemsSub', this.handle);
     },
     action: function(params, queryParams) {
-        // if (queryParams.limit > 5) handle.loadNextPage();
+
     }
 });
 

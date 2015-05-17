@@ -36,11 +36,10 @@ AboutView = function() {
         console.info("AboutView.js is ready");
 
         // var subs = Meteor.subscribe('items');
-
         this.handle = Items.find().observeChanges({
             added: function (id, fields) {
-                _createSurf.call(self, fields);
-            },
+                _createSurf.call(self, id, fields);
+            }
         });
     }.bind(this));
 
@@ -168,14 +167,13 @@ function _insertSurface() {
     });
 
     surf.on('click', function() {
-        var count = Items.find().count();
-        Items.insert({ 'Item' + count+1 });
+        Items.insert({ text: 'newly inserted item' });
     }) 
 
     return surf;
 }
 
-function _createSurf(data) {
+function _createSurf(id, data) {
     // var node = new famous.core.RenderNode();
 
     var surf = new ReactiveTemplate({
@@ -190,6 +188,13 @@ function _createSurf(data) {
         }
     });
 
+    var self = this;
+    surf.on('click', function(event) {
+        Items.remove(id, function(error, result) {
+            self.scrollView.remove(surf);
+        });
+    });
+
     // surf.state = new StateModifier({
         // align: [0, 0],
         // origin: [0, 0],
@@ -202,5 +207,11 @@ function _createSurf(data) {
     // node.add(surf.state).add(surf);
 
     // famous.utilities.Timer.setTimeout(function() {}, 100);
-    this.surfaces.push(surf);
+    
+    // RANDOM INSERT
+    var num = Math.floor(Math.random() * FlowRouter._current.route.handle.loaded()) + 1
+    this.scrollView.insert(num, surf);
+
+    // NORMAL 
+    // this.scrollView.push(surf);
 }

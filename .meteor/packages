@@ -6,6 +6,6 @@
 
 meteor-platform
 insecure
-raix:famono
 meteorhacks:flow-router
 percolate:paginated-subscription
+raix:famono
